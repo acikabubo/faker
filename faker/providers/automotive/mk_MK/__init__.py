@@ -8,11 +8,12 @@ from .. import Provider as AutomotiveProvider
 class Provider(AutomotiveProvider):
     # from https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_the_Republic_of_Macedonia
     license_plate_letters = (
-        'BE', 'BT', 'DB', 'DE', 'DK',
-        'GE', 'GV', 'KA', 'KI', 'KO',
-        'KR', 'KP', 'KU', 'MB', 'MK',
-        'NE', 'OH', 'PP', 'RA', 'RE',
-        'SN', 'SU', 'SR', 'ST', 'TE',
+        'BE', 'BT', 'DB', 'DE', 'DH',
+        'DK', 'GE', 'GV', 'KA', 'KI',
+        'KO', 'KR', 'KP', 'KS', 'KU',
+        'MB', 'MK', 'NE', 'OH', 'PP',
+        'PS', 'RA', 'RE', 'SK', 'SN',
+        'SU', 'SR', 'ST', 'TE', 'VA',
         'VE', 'VI', 'VV'
     )
 
