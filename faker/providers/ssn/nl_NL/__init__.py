@@ -1,12 +1,8 @@
-# coding=utf-8
-
-from __future__ import unicode_literals
 from .. import Provider as SsnProvider
 
 
 class Provider(SsnProvider):
-
-    def ssn(self):
+    def ssn(self) -> str:
         """
         Returns a 9 digits Dutch SSN called "burgerservicenummer (BSN)".
 
@@ -14,6 +10,7 @@ class Provider(SsnProvider):
         which is a check digit approach; this function essentially reverses
         the checksum steps to create a random valid BSN (which is 9 digits).
         """
+
         # see http://nl.wikipedia.org/wiki/Burgerservicenummer (in Dutch)
         def _checksum(digits):
             factors = (9, 8, 7, 6, 5, 4, 3, 2, -1)
@@ -38,11 +35,9 @@ class Provider(SsnProvider):
         # finally return our random but valid BSN
         return bsn
 
-    vat_id_formats = (
-        'NL#########B##',
-    )
+    vat_id_formats = ("NL#########B##",)
 
-    def vat_id(self):
+    def vat_id(self) -> str:
         """
         http://ec.europa.eu/taxation_customs/vies/faq.html#item_11
         :return: A random Dutch VAT ID

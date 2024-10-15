@@ -1,10 +1,9 @@
-#  -*- coding: utf-8 -*-
+from typing import List
 
-from __future__ import unicode_literals
 from .. import Provider as SsnProvider
 
 
-def checksum(digits):
+def checksum(digits: List[int]) -> int:
     """
     Returns the checksum of CPF digits.
     References to the algorithm:
@@ -32,15 +31,34 @@ class Provider(SsnProvider):
     The cpf return a valid number formatted with brazilian mask. eg nnn.nnn.nnn-nn
     """
 
-    def ssn(self):
+    def ssn(self) -> str:
         digits = self.generator.random.sample(range(10), 9)
 
         dv = checksum(digits)
         digits.append(dv)
         digits.append(checksum(digits))
 
-        return ''.join(map(str, digits))
+        return "".join(map(str, digits))
 
-    def cpf(self):
+    def cpf(self) -> str:
         c = self.ssn()
-        return c[:3] + '.' + c[3:6] + '.' + c[6:9] + '-' + c[9:]
+        return c[:3] + "." + c[3:6] + "." + c[6:9] + "-" + c[9:]
+
+    def rg(self) -> str:
+        """
+        Brazilian RG, return plain numbers.
+        Check:  https://www.ngmatematica.com/2014/02/como-determinar-o-digito-verificador-do.html
+        """
+
+        digits = self.generator.random.sample(range(0, 9), 8)
+        checksum = sum(i * digits[i - 2] for i in range(2, 10))
+        last_digit = 11 - (checksum % 11)
+
+        if last_digit == 10:
+            digits.append("X")
+        elif last_digit == 11:
+            digits.append(0)
+        else:
+            digits.append(last_digit)
+
+        return "".join(map(str, digits))

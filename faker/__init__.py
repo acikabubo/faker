@@ -1,6 +1,7 @@
-from faker.generator import Generator  # noqa F401
-from faker.factory import Factory  # noqa F401
+from faker.factory import Factory
+from faker.generator import Generator
+from faker.proxy import Faker
 
-VERSION = '1.0.0'
+VERSION = "30.3.0"
 
-Faker = Factory.create
+__all__ = ("Factory", "Generator", "Faker")

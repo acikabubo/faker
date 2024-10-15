@@ -1,11 +1,13 @@
-# coding=utf-8
+from typing import Dict, Optional, Tuple
 
-from .. import BaseProvider
+from .. import BaseProvider, ElementsType
+
+localized = True
 
 
 class Provider(BaseProvider):
     # Format: (code, name)
-    currencies = (
+    currencies: ElementsType[Tuple[str, str]] = (
         ("AED", "United Arab Emirates dirham"),
         ("AFN", "Afghan afghani"),
         ("ALL", "Albanian lek"),
@@ -83,7 +85,7 @@ class Provider(BaseProvider):
         ("KHR", "Cambodian riel"),
         ("KMF", "Comorian franc"),
         ("KPW", "North Korean won"),
-        ("KRW", "Western Krahn language"),
+        ("KRW", "South Korean won"),
         ("KWD", "Kuwaiti dinar"),
         ("KYD", "Cayman Islands dollar"),
         ("KZT", "Kazakhstani tenge"),
@@ -173,66 +175,251 @@ class Provider(BaseProvider):
     )
 
     # Source: https://en.wikipedia.org/wiki/List_of_cryptocurrencies
-    cryptocurrencies = (
-        ('AMP', "AMP"),
-        ('AUR', "Auroracoin"),
-        ('BC', "BlackCoin"),
-        ('BTC', "Bitcoin"),
-        ('BURST', "Burstcoin"),
-        ('DASH', "Dash"),
-        ('DOGE', "Dogecoin"),
-        ('EMC', "Emercoin"),
-        ('ETH', "Ethereum"),
-        ('ETC', "Ethereum Classic"),
-        ('GRC', "Gridcoin"),
-        ('KOI', "Coinye"),
-        ('LTC', "Litecoin"),
-        ('MSC', "Omni"),
-        ('MZC', "MazaCoin"),
-        ('NMC', "Namecoin"),
-        ('NXT', "Nxt"),
-        ('POT', "PotCoin"),
-        ('PPC', "Peercoin"),
-        ('TIT', "Titcoin"),
-        ('VTC', "Vertcoin"),
-        ('XDN', "DigitalNote"),
-        ('XMR', "Monero"),
-        ('XPM', "Primecoin"),
-        ('XRP', "Ripple"),
-        ('ZEC', "Zcash"),
-        ('STC', "SwiftCoin"),
-        ('BCN', "Bytecoin"),
-        ('FTH', "Feathercoin"),
-        ('NEO', "NEO"),
-        ('NEM', "XEM"),
-        ('USDT', "Tether"),
-        ('IOTA', "IOTA"),
-        ('DRC', "Decred"),
-        ('WAVES', "Waves Platform"),
-        ('LSK', "Lisk"),
-        ('ZCL', "Zclassic"),
-        ('BCH', "Bitcoin Cash"),
-        ('UBQ', "Ubiq"),
-        ('EOS', "EOS.IO"),
-        ('SRN', "Sirin Labs"),
-        ('TRX', "TRON"),
-        ('ADA', "Cardano"),
+    cryptocurrencies: ElementsType[Tuple[str, str]] = (
+        ("AMP", "AMP"),
+        ("AUR", "Auroracoin"),
+        ("BC", "BlackCoin"),
+        ("BTC", "Bitcoin"),
+        ("BURST", "Burstcoin"),
+        ("DASH", "Dash"),
+        ("DOGE", "Dogecoin"),
+        ("EMC", "Emercoin"),
+        ("ETH", "Ethereum"),
+        ("ETC", "Ethereum Classic"),
+        ("GRC", "Gridcoin"),
+        ("KOI", "Coinye"),
+        ("LTC", "Litecoin"),
+        ("MSC", "Omni"),
+        ("MZC", "MazaCoin"),
+        ("NMC", "Namecoin"),
+        ("NXT", "Nxt"),
+        ("POT", "PotCoin"),
+        ("PPC", "Peercoin"),
+        ("TIT", "Titcoin"),
+        ("VTC", "Vertcoin"),
+        ("XDN", "DigitalNote"),
+        ("XMR", "Monero"),
+        ("XPM", "Primecoin"),
+        ("XRP", "Ripple"),
+        ("ZEC", "Zcash"),
+        ("STC", "SwiftCoin"),
+        ("BCN", "Bytecoin"),
+        ("FTH", "Feathercoin"),
+        ("NEO", "NEO"),
+        ("NEM", "XEM"),
+        ("USDT", "Tether"),
+        ("IOTA", "IOTA"),
+        ("DRC", "Decred"),
+        ("WAVES", "Waves Platform"),
+        ("LSK", "Lisk"),
+        ("ZCL", "Zclassic"),
+        ("BCH", "Bitcoin Cash"),
+        ("UBQ", "Ubiq"),
+        ("EOS", "EOS.IO"),
+        ("SRN", "Sirin Labs"),
+        ("TRX", "TRON"),
+        ("ADA", "Cardano"),
     )
 
-    def currency(self):
+    # List of currency symbols
+    # source: https://en.wikipedia.org/wiki/Currency_symbol
+    currency_symbols: Dict[str, str] = {
+        "AED": "\u002e\u062f\u002e\u0625",
+        "AFN": "\u060B",
+        "ALL": "Lek",
+        "AMD": "\u058F",
+        "ANG": "\u0192",
+        "AOA": "Kz",
+        "ARS": "\u0024",
+        "AUD": "\u0024",
+        "AWG": "\u0192",
+        "AZN": "\u20bc",
+        "BAM": "KM",
+        "BBD": "\u0024",
+        "BDT": "\u09F3",
+        "BGN": "Lev",
+        "BHD": "\u062F\u0628",
+        "BIF": "Fr",
+        "BMD": "\u0024",
+        "BND": "\u0024",
+        "BOB": "\u0024",
+        "BRL": "\u0024",
+        "BSD": "\u0024",
+        "BTN": "Nu",
+        "BWP": "P",
+        "BYR": "R",
+        "BZD": "\u0024",
+        "CAD": "\u0024",
+        "CDF": "Fr",
+        "CHF": "Fr",
+        "CLP": "\u0024",
+        "CNY": "\u00A5",
+        "COP": "\u0024",
+        "CRC": "\u20A1",
+        "CUC": "\u0024",
+        "CUP": "\u0024",
+        "CVE": "\u0024",
+        "CZK": "\u004b\u010d\u0073",
+        "DJF": "Fr",
+        "DKK": "kr",
+        "DOP": "\u0024",
+        "DZD": "\u062f\u062c\u200e",
+        "EGP": "\u00A3",
+        "ERN": "Nfk",
+        "ETB": "Br",
+        "EUR": "\u20AC",
+        "FJD": "\u0024",
+        "FKP": "\u00A3",
+        "GBP": "\u00A3",
+        "GEL": "\u20BE",
+        "GGP": "\u00A3",
+        "GHS": "\u20B5",
+        "GIP": "\u00A3",
+        "GMD": "D",
+        "GNF": "FG",
+        "GTQ": "Q",
+        "GYD": "\u0024",
+        "HKD": "\u0024",
+        "HNL": "L",
+        "HRK": "kn",
+        "HTG": "G",
+        "HUF": "Ft",
+        "IDR": "Rp",
+        "ILS": "\u20AA",
+        "IMP": "\u00A3",
+        "INR": "\u20B9",
+        "IQD": "\u062F\u0639",
+        "IRR": "\uFDFC",
+        "ISK": "kr",
+        "JEP": "\u00A3",
+        "JMD": "\u0024",
+        "JOD": "JD",
+        "JPY": "\u00A5",
+        "KES": "KSh",
+        "KGS": "\u20C0",
+        "KHR": "\u17DB",
+        "KMF": "FC",
+        "KPW": "\u20A9",
+        "KRW": "\u20A9",
+        "KWD": "KD",
+        "KYD": "\u0024",
+        "KZT": "\u20B8",
+        "LAK": "\u20AD",
+        "LBP": "\u00A3",
+        "LKR": "\u20A8",
+        "LRD": "\u0024",
+        "LSL": "M",
+        "LTL": "L",
+        "LYD": "LD",
+        "MAD": "Dhs",
+        "MDL": "leu",
+        "MGA": "Ar",
+        "MKD": "DEN",
+        "MMK": "Ks",
+        "MNT": "\u20AE",
+        "MOP": "\u0024",
+        "MRO": "UM",
+        "MUR": "\u20A8",
+        "MVR": "\u0078",
+        "MWK": "K",
+        "MXN": "\u0024",
+        "MYR": "RM",
+        "MZN": "Mt",
+        "NAD": "\u0024",
+        "NGN": "\u20A6",
+        "NIO": "\u0024",
+        "NIS": "\u20AA",
+        "NOK": "kr",
+        "NPR": "\u20A8",
+        "NZD": "\u0024",
+        "OMR": "\uFDFC",
+        "PAB": "B/",
+        "PEN": "S/",
+        "PGK": "K",
+        "PHP": "\u20B1",
+        "PKR": "\u20A8",
+        "PLN": "\u007a\u0142",
+        "PYG": "\u20B2",
+        "QAR": "\uFDFC",
+        "RON": "leu",
+        "RSD": "\u0434\u0438\u043d",
+        "RUB": "\u20BD",
+        "RWF": "F",
+        "SAR": "\uFDFC",
+        "SBD": "\u0024",
+        "SCR": "\u20A8",
+        "SDG": "\u00A3",
+        "SEK": "kr",
+        "SGD": "\u0024",
+        "SHP": "\u00A3",
+        "SLL": "Le",
+        "SOS": "Sh.So.",
+        "SPL": "L",
+        "SRD": "\u0024",
+        "STD": "Db",
+        "SVC": "\u20A1",
+        "SYP": "\u00A3",
+        "SZL": "E",
+        "THB": "\u0E3F",
+        "TJS": "SM",
+        "TMT": "m",
+        "TND": "DT",
+        "TOP": "\u00a2",
+        "TRY": "\u20BA",
+        "TTD": "\u0024",
+        "TVD": "\u0024",
+        "TWD": "\u0024",
+        "TZS": "Tsh",
+        "UAH": "\u20B4",
+        "UGX": "USh",
+        "USD": "\u0024",
+        "UYU": "\u0024",
+        "UZS": "\u043b\u0432",
+        "VEF": "\u0042\u0073",
+        "VND": "\u20AB",
+        "VUV": "VT",
+        "WST": "\u0024",
+        "XAF": "Fr",
+        "XCD": "\u0024",
+        "XDR": "SDR",
+        "XOF": "Fr",
+        "XPF": "Fr",
+        "YER": "\uFDFC",
+        "ZAR": "R",
+        "ZMW": "K",
+        "ZWD": "\u0024",
+    }
+
+    price_formats: ElementsType[str] = ["#.##", "%#.##", "%##.##", "%,###.##", "%#,###.##"]
+
+    def currency(self) -> Tuple[str, str]:
         return self.random_element(self.currencies)
 
-    def currency_code(self):
+    def currency_code(self) -> str:
         return self.currency()[0]
 
-    def currency_name(self):
+    def currency_name(self) -> str:
         return self.currency()[1]
 
-    def cryptocurrency(self):
+    def currency_symbol(self, code: Optional[str] = None) -> str:
+        """
+        :example: $
+        """
+        if code is None:
+            code = self.random_element(self.currency_symbols.keys())
+        elif code not in [currency[0] for currency in self.currencies]:
+            raise KeyError("The supplied code is not valid")
+        return self.currency_symbols.get(code, "\u00A4")
+
+    def cryptocurrency(self) -> Tuple[str, str]:
         return self.random_element(self.cryptocurrencies)
 
-    def cryptocurrency_code(self):
+    def cryptocurrency_code(self) -> str:
         return self.cryptocurrency()[0]
 
-    def cryptocurrency_name(self):
+    def cryptocurrency_name(self) -> str:
         return self.cryptocurrency()[1]
+
+    def pricetag(self) -> str:
+        currency: Tuple[str, str] = self.random_element(self.currencies)
+        return currency[0] + "\N{no-break space}" + self.numerify(self.random_element(self.price_formats))
